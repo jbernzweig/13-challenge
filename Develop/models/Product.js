@@ -10,6 +10,21 @@ class Product extends Model {}
 Product.init(
   {
     // define columns
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    // This column will store a reference of the `id` of the `Product`
+    product_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        // This references the `category` model, which we set in `Driver.js` as its `modelName` property
+        model: 'category',
+        key: 'id',
+      },
+    },
   },
   {
     sequelize,
